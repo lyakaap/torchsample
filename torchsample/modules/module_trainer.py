@@ -653,6 +653,7 @@ class SingleInput_SingleTarget_Helper(object):
         return input_batch, target_batch
     def grab_batch_from_loader(self, loader_iter, volatile=False):
         input_batch, target_batch = next(loader_iter)
+        target_batch = target_batch.squeeze()
         return Variable(input_batch, volatile=volatile), Variable(target_batch, volatile=volatile, requires_grad=False)
     def apply_transforms(self, tforms, input_batch, target_batch):
         input_batch = tforms[0](input_batch)
